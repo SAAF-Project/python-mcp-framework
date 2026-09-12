@@ -7,7 +7,9 @@ Use [stdio configuration](installation.md) for Codex and Claude Code.
 ## Build
 
 Finish and test your integration first. Update `packaging/manifest.json` with its
-name, version, description, author, and required user settings. For secrets, use
+use-case `name` (e.g. `invoice-search`), display name, version, description,
+author, and required user settings. Set `server.mcp_config.env.MCP_SERVER_NAME`
+to the same use-case name. Replace the generic starter identity before sharing. For secrets, use
 the specification's `sensitive: true` settings and reference them in
 `server.mcp_config.env` as `${user_config.setting_name}`. Never put actual values
 in the manifest. Add privacy-policy URLs for any external data-processing services.
@@ -20,12 +22,12 @@ uv run python scripts/build_bundle.py
 ```
 
 The builder exports locked runtime dependencies, installs their hash-verified
-wheels into a temporary `lib/`, copies only Python files from `src/workshop_mcp`,
+wheels into a temporary `lib/`, copies only Python files from `src/usecase_mcp`,
 and adds the launcher, manifest, MIT license and build information. Third-party
 package metadata/licenses stay with their wheels. It fails if compatible wheels
 are unavailable rather than compiling silently. It needs network/cache access.
 
-Output is `dist/workshop-mcp-0.1.0-OS-ARCH-pyVERSION.mcpb`. It excludes your `.env`,
+Output is `dist/USE-CASE-NAME-0.1.0-OS-ARCH-pyVERSION.mcpb`. It excludes your `.env`,
 local progress, client configs, reference clone, tests and development environment.
 The source allowlist does not detect secrets hardcoded inside Python; review
 source before sharing. If your integration requires non-Python assets, deliberately

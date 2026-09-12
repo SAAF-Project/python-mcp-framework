@@ -26,7 +26,7 @@ def main() -> None:
     parser.add_argument("--expect-empty", action="store_true")
     parser.add_argument("--bundle", help="Path to an extracted bundle's server.py")
     args = parser.parse_args()
-    command_args = [args.bundle] if args.bundle else ["-m", "workshop_mcp"]
+    command_args = [args.bundle] if args.bundle else ["-m", "usecase_mcp"]
     asyncio.run(check(sys.executable, command_args, args.expect_empty))
 
 

@@ -1,10 +1,10 @@
-# Workshop walkthroughs
+# Example walkthroughs
 
 These are conversation rehearsals, not prebuilt integrations or live-service tests.
 
 ## Public read API
 
-Participant: “I want to check the weather.” Guide: first prepare and clone; ask
+User: “I want to check the weather.” Guide: first prepare and clone; ask
 which locations and which questions (current conditions versus a forecast), then
 find a documented source. Verify whether a key, usage limits or attribution are
 required. Agree one bounded read tool, implement it, test empty/error responses,
@@ -15,7 +15,7 @@ absent, and demonstrates a real safe result or explicitly labels mocked results.
 
 ## Authenticated API
 
-Participant: “Look up items in my business application.” Guide: ask for the
+User: “Look up items in my business application.” Guide: ask for the
 service/documentation, environment and desired fields; determine API key versus
 OAuth and scopes. Request secret names/availability, not values. If registration
 or credentials are unavailable, record the blocker. Implement with mocks only
@@ -26,7 +26,7 @@ guide never claims a mock proves authentication or asks for secrets in chat.
 
 ## Database with writes
 
-Participant: “Read customers and let me delete duplicates.” Guide: separate the
+User: “Read customers and let me delete duplicates.” Guide: separate the
 read tool from deletion. Ask what counts as a duplicate and which database/test
 environment is allowed. Explain that deleting the wrong record may lose customer
 history. Start with a read-only account and preview. Record explicit agreement

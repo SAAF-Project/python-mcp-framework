@@ -6,11 +6,11 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class Settings:
-    name: str = "Workshop MCP"
+    name: str = "MCP Starter"
 
     @classmethod
     def from_environment(cls) -> "Settings":
-        name = os.environ.get("WORKSHOP_MCP_NAME", "Workshop MCP").strip()
+        name = os.environ.get("MCP_SERVER_NAME", "MCP Starter").strip()
         if not name:
-            raise ValueError("WORKSHOP_MCP_NAME must not be empty")
+            raise ValueError("MCP_SERVER_NAME must not be empty")
         return cls(name=name)

@@ -1,17 +1,24 @@
 {
   "manifest_version": "0.3",
-  "name": "workshop-mcp",
-  "display_name": "Workshop MCP",
+  "name": "mcp-starter",
+  "display_name": "MCP Starter",
   "version": "0.1.0",
-  "description": "Your local workshop MCP server. The starter has no tools yet.",
-  "author": {"name": "MCP Workshop Starter contributors"},
+  "description": "Your local MCP server. The starter has no tools yet.",
+  "author": {
+    "name": "Python MCP Starter contributors"
+  },
   "license": "MIT",
   "server": {
     "type": "python",
     "entry_point": "server.py",
     "mcp_config": {
       "command": "${user_config.python_path}",
-      "args": ["${__dirname}/server.py"]
+      "args": [
+        "${__dirname}/server.py"
+      ],
+      "env": {
+        "MCP_SERVER_NAME": "mcp-starter"
+      }
     }
   },
   "user_config": {

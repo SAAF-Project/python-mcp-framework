@@ -1,6 +1,6 @@
 # My MCP project — local working notes
 
-Copy to `.workshop/progress.md`. Store no secrets or real customer records.
+Copy to `.local/progress.md`. Store no secrets or real customer records.
 
 ## Progress
 
@@ -9,6 +9,9 @@ Copy to `.workshop/progress.md`. Store no secrets or real customer records.
 - Blockers and unverified assumptions:
 - OS / Python / coding app / destination client:
 - SDK commit and examples read:
+
+- Server name (use-case slug, e.g. `invoice-search`):
+- Installation scope and target project folder:
 
 ## Purpose
 
@@ -35,7 +38,7 @@ classification, target restrictions, result bounds, and success example.
 ## Write decision (default: no writes)
 
 - Specific requested actions and affected targets:
-- Concrete risks explained to the participant:
+- Concrete risks explained to the user:
 - Explicit scope agreement, if any:
 - Technical restrictions / test environment / preview / rollback approach:
 - Destructive operations require fresh confirmation of their concrete effect:

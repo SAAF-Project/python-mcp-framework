@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def source_files(root: Path) -> list[Path]:
     """Only Python source is shipped; secrets must never be hardcoded in it."""
     return sorted(
-        path for path in (root / "src" / "workshop_mcp").rglob("*.py")
+        path for path in (root / "src" / "usecase_mcp").rglob("*.py")
         if not path.is_symlink() and "__pycache__" not in path.parts
     )
 

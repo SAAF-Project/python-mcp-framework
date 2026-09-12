@@ -3,7 +3,7 @@ requires = ["hatchling==1.29.0"]
 build-backend = "hatchling.build"
 
 [project]
-name = "mcp-workshop-starter"
+name = "python-mcp-starter"
 version = "0.1.0"
 description = "An agent-guided starting point for your own local MCP server"
 readme = "README.md"
@@ -12,13 +12,13 @@ license = "MIT"
 dependencies = ["mcp==2.2.0"]
 
 [project.scripts]
-workshop-mcp = "workshop_mcp.server:main"
+mcp-starter = "usecase_mcp.server:main"
 
 [dependency-groups]
 dev = ["pytest>=8.4,<10", "ruff>=0.12,<1"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/workshop_mcp"]
+packages = ["src/usecase_mcp"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

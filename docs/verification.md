@@ -2,7 +2,19 @@
 
 Checked on 2026-09-12 on macOS arm64, CPython 3.14.5.
 
-## Passed
+## Current maintenance checks
+
+After neutralizing the starter naming and adding use-case configuration:
+
+- `uv sync --locked` installed the renamed project successfully.
+- `uv run pytest`: 12 tests passed, including invalid/missing names and a real
+  stdio connection using generated configuration that reports `invoice-search`.
+- `uv run python scripts/smoke_test.py`: connected; zero tools as expected.
+- `uv run ruff check .`: passed.
+- Existing pinned SDK clone verified; the four listed examples were read.
+- Client GUI installation and bundle rebuild were not repeated for this change.
+
+## Earlier baseline checks (before the package rename)
 
 - `uv sync --locked`: installs the project and locked MCP SDK 2.2.0.
 - `pytest -q`: 10 tests passed, including a real subprocess MCP initialize and
@@ -39,9 +51,9 @@ This was an instruction walkthrough, not an automated coding-agent evaluation.
 - Graphical installation in Codex, Claude Code, or Claude Desktop. Configuration
   and bundle checks do not prove an installed client accepts or runs them.
 - External API, database, scraping or OAuth behavior: no such implementation is
-  present by design. Each participant's integration needs its own tests.
+  present by design. Each user's integration needs its own tests.
 - Write enforcement in a future integration: the starter exposes no write tools;
   the guide specifies the controls the implementing agent must add and test.
 
-Git was not initialized and nothing was published. Before the workshop, run one
-full participant exercise in your intended app and on the participants' OS.
+Git was not initialized and nothing was published. Before relying on an integration, run one
+full user exercise in your intended app and on the users' OS.

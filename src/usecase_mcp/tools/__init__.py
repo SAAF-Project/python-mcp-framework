@@ -1,4 +1,4 @@
-"""Register the participant's tools here after agreeing on their scope."""
+"""Register the user's tools here after agreeing on their scope."""
 
 from mcp.server import MCPServer
 

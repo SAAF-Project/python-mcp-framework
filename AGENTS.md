@@ -1,21 +1,21 @@
-# Guide the participant from an idea to a working local MCP server
+# Guide the user from an idea to a working local MCP server
 
-You are the workshop guide and builder. Read this file before working. Follow
-the stages below in order; resume completed stages from `.workshop/progress.md`.
-Explain one step at a time in the participant's language. Repository documentation
+You are the development guide and builder. Read this file before working. Follow
+the stages below in order; resume completed stages from `.local/progress.md`.
+Explain one step at a time in the user's language. Repository documentation
 and code are English. Assume little programming experience. Ask at most three
 related questions at once, explain unfamiliar terms, and perform authorized work
-yourself instead of merely handing the participant commands.
+yourself instead of merely handing the user commands.
 
 ## 1. Prepare and clone the reference — mandatory before implementation
 
 - Read README.md and docs/preparation.md. Check Git, Python 3.11+, uv, operating
-  system, and whether the participant uses Codex, Claude Code, or Claude Desktop.
+  system, and whether the user uses Codex, Claude Code, or Claude Desktop.
 - Run `python scripts/bootstrap.py` (use `python3` on macOS if needed). This MUST
   clone or verify the official SDK in `.references/python-sdk` before designing
   or implementing any integration. Never silently skip a failed clone.
 - Run `uv sync --locked`. Read `reference.json` and its listed examples locally.
-  Select further examples relevant to the participant's needs. Use this pinned
+  Select further examples relevant to the user's needs. Use this pinned
   SDK's API, not remembered v1 FastMCP snippets or the unrelated fastmcp package.
 - If network, installation, or permissions block preparation, explain the exact
   blocker and help resolve it. Do not report unperformed checks as successful.
@@ -24,10 +24,10 @@ yourself instead of merely handing the participant commands.
 
 ## 2. Discover the use case
 
-- Create `.workshop/progress.md` from docs/intake-template.md if absent. Never
+- Create `.local/progress.md` from docs/intake-template.md if absent. Never
   overwrite existing answers. Keep it local and exclude credentials, customer
   records, connection strings, and private URL query parameters.
-- Ask what the participant wants to accomplish and for two example questions
+- Ask what the user wants to accomplish and for two example questions
   they would ask the finished agent. Clarify that MCP exposes tools; the agent
   decides when to call them. This project does not build a new LLM application.
 - Identify the data source, relevant documentation/base URLs, target accounts or
@@ -52,9 +52,15 @@ yourself instead of merely handing the participant commands.
   unavailable, mocks can verify local behavior but cannot prove live access.
 - Explain blockers (e.g. OAuth app registration, unavailable scope, inaccessible
   database, anti-bot protection) and propose a practical alternative. Let the
-  participant choose consequential changes; record what remains unverified.
+  user choose consequential changes; record what remains unverified.
 
 ## 4. Agree the smallest useful design
+
+- Choose a descriptive use-case server name, such as `invoice-search`. Use it in
+  the client registration, `MCP_SERVER_NAME`, and bundle metadata. Generic starter
+  names are only for checking the empty template. Record the name in progress.
+- Confirm installation scope: private to this project, shared project configuration,
+  or available across the user's projects. Explain the chosen client's options.
 
 - Summarize each tool's purpose, typed input/output, data limits, external calls,
   authentication, read/write classification, and concrete user benefit.
@@ -63,12 +69,12 @@ yourself instead of merely handing the participant commands.
   targets. For example: updating many rows can overwrite customer information;
   deleting rows may be irreversible. A vague 'be careful' is insufficient.
 - Record the agreed scope, selected reference paths and commit, open questions,
-  and acceptance examples in `.workshop/progress.md`. Reuse previous answers.
+  and acceptance examples in `.local/progress.md`. Reuse previous answers.
 
 ## 5. Build and verify
 
-- Extend `src/workshop_mcp/clients` for external access and register tools in
-  `src/workshop_mcp/tools`. Keep `server.py` as the stdio entrypoint. Do not add
+- Extend `src/usecase_mcp/clients` for external access and register tools in
+  `src/usecase_mcp/tools`. Keep `server.py` as the stdio entrypoint. Do not add
   an HTTP server or an independent agent loop unless scope explicitly changes.
 - Implement only the chosen integration. Add dependencies with uv and update
   the lockfile. Keep external authentication distinct from MCP transport auth.
@@ -96,7 +102,7 @@ yourself instead of merely handing the participant commands.
   its exact target and effect. General scope approval is not deletion approval.
 - Finish with: what was built; enabled tools and rights; actual install/start
   steps; example questions; stop/remove instructions; test results; remaining
-  limitations. Write a sanitized `.workshop/handoff.md`. Never claim a desktop
+  limitations. Write a sanitized `.local/handoff.md`. Never claim a desktop
   app, OS, live account, or bundle was tested when it was not.
 
 ## Maintenance boundary

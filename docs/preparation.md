@@ -14,6 +14,21 @@ On Windows, enable Python's PATH option during installation. On macOS, avoid
 relying on an old system Python. The agent should check the actual interpreter.
 An account/subscription for your coding app may be required separately.
 
+## Set up your account and project
+
+Sign in to Codex or Claude Code and confirm you can start a conversation. Clone
+this repository using the README instructions. Open the cloned folder as a project
+in Codex, or run `claude` from a terminal inside it. Start the task there so the
+agent can read `AGENTS.md`, edit the source and run checks. A fresh clone provides
+a separate starting point for each integration.
+
+Choose a permanent source folder named for your use case. Later, installation
+registers the finished server either for your user account or for a specific
+project; see [Install locally](installation.md). No client settings are changed by
+the preparation commands.
+
+## Prepare the Python environment
+
 From the project folder, run `python3 scripts/bootstrap.py` (Windows: `python`).
 The helper verifies Git and uv, clones the official SDK at the version in
 `reference.json`, and checks its origin, clean working tree, commit, and examples.

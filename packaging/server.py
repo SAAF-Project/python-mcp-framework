@@ -17,6 +17,6 @@ if (
     )
 sys.path[:0] = [str(root / "src"), str(root / "lib")]
 
-from workshop_mcp.server import main  # noqa: E402
+from usecase_mcp.server import main  # noqa: E402
 
 main()

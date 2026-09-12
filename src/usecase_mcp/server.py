@@ -5,8 +5,8 @@ import sys
 
 from mcp.server import MCPServer
 
-from workshop_mcp.config import Settings
-from workshop_mcp.tools import register_tools
+from usecase_mcp.config import Settings
+from usecase_mcp.tools import register_tools
 
 
 def create_server() -> MCPServer:

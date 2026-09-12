@@ -342,7 +342,7 @@ wheels = [
 ]
 
 [[package]]
-name = "mcp-workshop-starter"
+name = "python-mcp-starter"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
