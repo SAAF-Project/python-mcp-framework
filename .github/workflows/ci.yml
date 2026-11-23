@@ -78,5 +78,6 @@ jobs:
           entry = validator.entry('SAAF-Project/python-mcp-framework', Path('target/agent.yaml').read_text(), 'local', 'repo')
           assert not entry['warnings'], entry['warnings']
           assert entry['has_mandate']
+          assert entry['confirmed'] is False
           print('Manifest valid; confirmed:', entry['confirmed'])
           PY
