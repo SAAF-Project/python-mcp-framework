@@ -17,7 +17,7 @@ def run(*args: str, cwd: Path = ROOT) -> str:
 def ensure_reference(root: Path = ROOT) -> str:
     spec = json.loads((root / "reference.json").read_text())
     target = root / ".references" / "python-sdk"
-    if target.is_symlink():
+    if target.parent.is_symlink() or target.is_symlink():
         raise RuntimeError("Reference path is a symlink; use a regular local clone.")
     if target.exists():
         if not (target / ".git").exists():
