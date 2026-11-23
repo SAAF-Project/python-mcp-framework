@@ -20,11 +20,10 @@ External services may still require an internet connection and authentication.
 ## Start here
 
 1. Install Git, Python 3.11+ and uv using [Preparation](docs/preparation.md).
-2. Clone this repository into your own working folder. Replace `YOUR-REPO-URL`
-   with this repository's GitHub URL once published:
+2. Clone this repository into your own working folder:
 
    ```sh
-   git clone YOUR-REPO-URL my-mcp
+   git clone https://github.com/SAAF-Project/python-mcp-framework.git my-mcp
    cd my-mcp
    ```
 
@@ -76,7 +75,7 @@ the agent explicitly agree on them and implement appropriate restrictions.
 The official SDK is installed as a locked dependency. Its separate Git clone is
 mandatory learning/reference material and is excluded from your repository.
 No external integrations, hosted services, Git repository, or GitHub remote are
-created automatically. Before publishing, replace the clone URL above.
+created automatically by the preparation scripts.
 
 ## Develop and check
 
@@ -90,6 +89,28 @@ uv run python scripts/smoke_test.py --expect-empty
 `uv run mcp-starter` starts the stdio server and waits for protocol input; it does
 not open a web page. Use the smoke test or a connected client to interact with it.
 Press Ctrl+C to stop a manually started server.
+
+## SAAF maintenance and evidence
+
+The [manifest](agent.yaml) describes this empty infrastructure starter with
+`confirmed: false`; a named maintainer has not yet accepted ownership. Candidate
+[audit criteria](AUDIT-CRITERIA.md) map to actual tests. The [security policy](SECURITY.md)
+and [verification record](docs/verification.md) distinguish local protocol checks
+from desktop installation, bundle builds and future integrations.
+
+PR CI installs the committed `uv.lock`, then runs tests, lint and the real local
+stdio smoke test on Python 3.11/3.12 Linux and 3.12 Windows. Dependency installation
+uses the network; the checks themselves use no provider, external connector or
+customer data. CI tooling is separately hash-locked in `requirements-ci.txt`.
+The existing runtime/test lock and SDK reference pin are preserved.
+
+Input is MCP protocol traffic plus the optional process variable `MCP_SERVER_NAME`.
+Output is protocol initialization/tool-list responses, printed configuration, or
+an explicitly requested local bundle. No model processes data in this starter.
+Do not interpret an empty tool list as authorization or safety evidence for a
+future connector. Bundle source selection rejects symlinked files/directories
+and missing/empty source; builders still require trusted source with no hardcoded
+secrets and no concurrent changes.
 
 ## References
 

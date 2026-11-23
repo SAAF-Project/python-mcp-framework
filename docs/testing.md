@@ -16,7 +16,10 @@ their agreed names and omit `--expect-empty` for the manual smoke test.
 
 Tests also cover clone/reuse behavior, origin/revision/local-change rejection,
 missing prerequisites, a failed clone, parseable client configs and bundle source
-exclusions. Mocked clone tests avoid requiring the network for every test run;
+exclusions. Additional negative tests exercise missing/empty bundle sources,
+symlinked source/reference paths, blank environment identity and actual stdio
+refusal of an unregistered tool. These use synthetic temporary files and local
+subprocesses, not an API or a database. Mocked clone tests avoid requiring the network for every test run;
 run the actual bootstrap separately to verify your real GitHub access.
 
 For a clean installation, copy only distributable source to a fresh folder and

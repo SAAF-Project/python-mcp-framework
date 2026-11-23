@@ -1,0 +1,27 @@
+name: Python MCP Starter
+repo: SAAF-Project/python-mcp-framework
+island: foundation
+maturity: building
+confirmed: false
+category: Local MCP infrastructure
+language: Python
+description: Empty local stdio MCP server, pinned SDK reference and helpers for preparing, testing and packaging an explicitly scoped future integration.
+tags: [mcp, stdio, starter, offline-tests]
+depends_on: []
+mandate:
+  purpose: Provide a local protocol foundation; the starter registers no tools and makes no model or external-service calls.
+  allowed_tools: [initialize_local_stdio_session, list_registered_tools, print_client_configuration, verify_pinned_sdk_reference, build_local_bundle]
+  forbidden_actions:
+    - action: change_own_config
+      rationale: Tool registration, dependencies, reference pins and permissions require a reviewed change.
+    - action: enable_external_integration_implicitly
+      rationale: Example scenarios are guidance only; no connector or account access is implemented.
+    - action: write_client_configuration
+      rationale: The configuration helper only prints candidate settings; it does not install or replace them.
+    - action: treat_mcp_annotations_as_authorization
+      rationale: Future integrations must implement access boundaries and human approval for consequential actions.
+    - action: distribute_local_data_or_credentials
+      rationale: Bundles select regular Python source and locked dependencies; hardcoded secrets still require review.
+  trusted_inputs: [reviewed_local_source_tree, reviewed_reference_and_dependency_pins]
+  human_approval_required_for: [selecting_connector_and_data_scope, granting_external_credentials, client_installation, enabling_write_tools, publishing_bundles]
+  evidence_policy: Record the exact source and lock revisions with real stdio and filesystem test results. No live connector, client GUI, model quality or production authorization assessment is implied.

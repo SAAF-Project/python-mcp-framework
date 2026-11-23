@@ -1,5 +1,36 @@
 # Verification record
 
+## SAAF maintenance check — 2026-11-23
+
+macOS arm64, CPython 3.12.13, uv 0.11.28; the existing `uv.lock` and
+SDK 2.2.0 reference pin are unchanged. A fresh official reference clone verified
+commit `9972c21aa42054fb1450c5fc614761ed11847ec6`; the four listed examples were
+read. `uv sync --locked` installed successfully.
+
+- 25 tests pass: the 12 existing tests plus 13 boundary/protocol cases.
+- Real local stdio initialize/tools-list succeeds with zero tools; a synthetic
+  unregistered tool returns an error without registering any tool.
+- Bundle source selection rejects symlinked source roots, nested directories and
+  files before an installer runs. Missing/empty source is rejected. Non-Python
+  local data and caches remain outside the source selection.
+- Bootstrap rejects a symlink at `.references` or its clone path before Git runs.
+- Ruff passes. No live connector, model provider, graphical installation or full
+  bundle rebuild was performed in this maintenance round.
+- Proposed PR CI runs the same suite and smoke checks on Linux 3.11/3.12 and
+  Windows 3.12 and validates the manifest with a pinned existing Living Map
+  checker. Check the exact PR commit's job outcomes; the workflow file alone is
+  not proof that these platform checks ran.
+
+The source-selection checks assume a trusted, quiescent checkout. They do not
+scan Python for hardcoded secrets or defend against concurrent replacement.
+No new tool or external access was added. Named ownership remains unaccepted.
+The uv runtime/test lock is preserved; the separately pinned Hatchling build
+backend can still resolve its own transitive build dependencies during sync.
+
+## Historical evidence from the original contributors
+
+The records below are retained as earlier reported checks, not re-run claims.
+
 Checked on 2026-09-12 on macOS arm64, CPython 3.14.5.
 
 ## Current maintenance checks

@@ -13,14 +13,26 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def source_files(root: Path) -> list[Path]:
-    """Only Python source is shipped; secrets must never be hardcoded in it."""
-    return sorted(
-        path for path in (root / "src" / "usecase_mcp").rglob("*.py")
-        if not path.is_symlink() and "__pycache__" not in path.parts
-    )
+    """Ship regular Python source from a trusted, quiescent tree, never symlinks."""
+    package = root / "src" / "usecase_mcp"
+    if (root / "src").is_symlink() or package.is_symlink():
+        raise RuntimeError("Bundle source directories must not be symlinks.")
+    if not package.is_dir():
+        raise RuntimeError("Bundle source package is missing.")
+    files = []
+    for path in package.rglob("*"):
+        if path.is_symlink():
+            raise RuntimeError("Bundle source contains a symlink; no archive built.")
+        if path.is_file() and path.suffix == ".py" and "__pycache__" not in path.parts:
+            files.append(path)
+    if not files:
+        raise RuntimeError("Bundle contains no Python source.")
+    return sorted(files)
 
 
 def build_bundle(root: Path = ROOT) -> Path:
+    # Check the complete source selection before installation or archive creation.
+    sources = source_files(root)
     uv = shutil.which("uv")
     if not uv:
         raise RuntimeError("uv is required. See docs/preparation.md.")
@@ -43,7 +55,7 @@ def build_bundle(root: Path = ROOT) -> Path:
         }, indent=2) + "\n")
         shutil.copy2(root / "packaging" / "server.py", stage / "server.py")
         shutil.copy2(root / "LICENSE", stage / "LICENSE")
-        for source in source_files(root):
+        for source in sources:
             destination = stage / source.relative_to(root)
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source, destination)
